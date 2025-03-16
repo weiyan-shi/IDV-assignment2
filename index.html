@@ -27,9 +27,17 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         z-index: 1000;
       }
+      .author {
+        font-size: 14px;
+        color: #f0f0f0;
+        margin-top: 5px;
+        text-align: center;
+        opacity: 0.8;
+      }
+
       .nav-buttons {
         position: fixed;
-        top: 70px;
+        top: 100px;
         width: 100%;
         text-align: center;
         padding: 10px 0;
@@ -60,7 +68,8 @@
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 150px;
+        margin-top: 180px;
+        margin-bottom: 50px;
       }
 
       .content {
@@ -74,10 +83,11 @@
         text-align: center;
       }
       #page1 img {
-        max-width: 100%;
+        max-width: 70%;
         height: auto;
         border-radius: 5px;
         margin-bottom: 15px;
+        margin: 0 auto;
       }
       #page2 {
         flex-direction: row;
@@ -91,6 +101,11 @@
       .text2 {
         width: 48%;
         text-align: left;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
       }
       .image {
         width: 48%;
@@ -101,10 +116,67 @@
         height: auto;
         border-radius: 5px;
       }
+      .text1 h2 {
+        color: #2c3e50;
+        font-size: 22px;
+        border-bottom: 2px solid #2980b9;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+      }
+
+      .text1 p {
+        color: #333;
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .text1 ul {
+        padding-left: 20px;
+      }
+
+      .text1 ul li {
+        margin-bottom: 8px;
+        list-style-type: '☻ ';
+        color: #2980b9;
+        font-weight: bold;
+      }
+      .text1 strong {
+        color: #d35400;
+      }
+      .text2 h2 {
+        color: #2c3e50;
+        font-size: 22px;
+        border-bottom: 2px solid #2980b9;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+      }
+
+      .text2 p {
+        color: #333;
+        font-size: 16px;
+        margin: 10px 0;
+      }
+
+      .text2 ul {
+        padding-left: 20px;
+      }
+
+      .text2 ul li {
+        margin-bottom: 8px;
+        list-style-type: '☻ ';
+        color: #2980b9;
+        font-weight: bold;
+      }
+      .text2 strong {
+        color: #d35400;
+      }
     </style>
   </head>
   <body>
-    <div class="header">Critique of Visualizations</div>
+    <div class="header">
+      Critique of Visualizations
+      <p class="author">By Weiyan Shi</p>
+    </div>
 
     <div class="nav-buttons">
       <button id="prev" onclick="changePage(-1)">⬅ Back</button>
@@ -116,31 +188,70 @@
         <img src="example1.png" alt="Visualization Example 1" />
         <div class="text1">
           <h2>Visualization 1: "How is gay marriage changing in the US?"</h2>
+          <p class="source">
+            <em
+              >Source:
+              <a
+                href="https://www.reddit.com/r/dataisbeautiful/comments/1jb8pzh/oc_how_is_gay_marriage_changing_in_the_us/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button"
+                target="_blank"
+                >Reddit (DataIsBeautiful)</a
+              ></em
+            >
+          </p>
           <p><strong>Critique:</strong></p>
           <p>🔴 <strong>Data Issues</strong></p>
           <p>
-            <strong>Percentage growth can be misleading:</strong> The map shows
-            percent change rather than absolute numbers. A state with very few
-            same-sex marriages in 2014 could show a massive percentage increase
-            even if the actual number of marriages remains low.
+            <strong>Percentage growth can be misleading:</strong> The
+            visualization shows the percentage increase in same-sex marriages
+            per state, but it does not include absolute numbers. This is
+            problematic because a small initial count in 2014 can lead to an
+            exaggerated percentage change. For example, a state with very few
+            same-sex marriages in 2014 might show a 300% increase, even if the
+            actual number of new marriages is quite low. Without knowing the
+            baseline values, the significance of these percentages is unclear.
+          </p>
+          <p>
+            <strong>Negative growth in Iowa (-11%):</strong> Iowa is the only
+            state with a reported decline in same-sex marriages, but no context
+            is given. It is unclear whether this is due to people moving out,
+            changes in reporting, or an actual reduction in marriages. This lack
+            of explanation makes the data point seem like an anomaly rather than
+            a meaningful trend.
+          </p>
+          <p>
+            <strong>Missing demographic factors:</strong> The map does not
+            account for key factors such as population size, legal changes, or
+            cultural attitudes that could influence marriage rates. For
+            instance, states with larger LGBTQ+ populations might naturally have
+            higher numbers, while states with restrictive laws in the past might
+            show sudden increases due to legalization.
           </p>
 
           <p>🎨 <strong>Idiom Issues</strong></p>
           <p>
-            <strong>Color scale distortion:</strong> The gradient from green
-            (-11%) to purple (466%) exaggerates differences. The negative value
-            for Iowa is especially highlighted in green, making it visually
-            stand out despite being the only decrease.
+            <strong>Color scale distortion:</strong> The color gradient from
+            green (-11%) to purple (466%) creates a misleading contrast. The
+            green shade for Iowa makes it visually stand out, despite being the
+            only decrease, while large increases like Montana’s 466% might be
+            overly emphasized. The lack of a uniform distribution in the color
+            scale further exaggerates differences.
           </p>
-
           <p>✅ <strong>Suggestions for Improvement</strong></p>
           <ul>
             <li>
-              Use absolute numbers alongside percentages to give better context.
+              Display absolute numbers alongside percentages to provide better
+              context. A state with 50 new same-sex marriages and a 200%
+              increase should be visually different from a state with 5,000 new
+              marriages and a 200% increase.
             </li>
             <li>
-              Adjust color scaling so that large variations (like 466%) do not
-              overly dominate the visualization.
+              Use a more balanced color scale to avoid extreme emphasis on large
+              or small changes. For example, a diverging scale with more neutral
+              midpoints could help reduce visual distortion.
+            </li>
+            <li>
+              Provide context for anomalies like Iowa’s decrease, possibly
+              through annotations or additional explanations.
             </li>
           </ul>
         </div>
@@ -151,6 +262,16 @@
             Visualization 2: "Top 50 Universities Under 50 Years for PhD
             Studies"
           </h2>
+          <p class="source">
+            <em
+              >Source:
+              <a
+                href="https://www.linkedin.com/posts/emmanueltsekleves_phd-academia-highereducation-activity-7306669241456312321-IOT1?utm_medium=ios_app&rcm=ACoAAC2QSmkBvPWnc1tjnwvMiJ16Pu-4-g3d7qQ&utm_source=social_share_video_v2&utm_campaign=copy_link"
+                target="_blank"
+                >LinkedIn (Emmanuel Tsekleves)</a
+              ></em
+            >
+          </p>
           <p><strong>Critique:</strong></p>
 
           <p>🔴 <strong>Data Issues</strong></p>
@@ -164,10 +285,9 @@
           <p>🎨 <strong>Idiom Issues</strong></p>
           <p>
             <strong>Unclear purpose of the world map:</strong> It is not clear
-            whether the map aims to show the ranking or simply the
-            geographic distribution of universities. The use of numbers
-            forces viewers to cross-reference with the table, making it harder
-            to interpret.
+            whether the map aims to show the ranking or simply the geographic
+            distribution of universities. The use of numbers forces viewers to
+            cross-reference with the table, making it harder to interpret.
           </p>
 
           <p>
@@ -178,25 +298,22 @@
 
           <p>
             <strong>Overuse of blue tones:</strong> The entire design uses a
-            monochromatic blue scheme, which reduces contrast.
-            Differentiating regions with different colours could improve
-            clarity.
+            monochromatic blue scheme, which reduces contrast. Differentiating
+            regions with different colours could improve clarity.
           </p>
 
           <p>✅ <strong>Suggestions for Improvement</strong></p>
           <ul>
             <li>
-              Add ranking methodology to explain how universities were
-              selected.
+              Add ranking methodology to explain how universities were selected.
             </li>
             <li>
-              Make the world map more informative by either placing
-              university names directly or using colour coding instead of
-              numbers.
+              Make the world map more informative by either placing university
+              names directly or using colour coding instead of numbers.
             </li>
             <li>
-              Use better colour contrast so that the table and map are
-              easier to read.
+              Use better colour contrast so that the table and map are easier to
+              read.
             </li>
           </ul>
         </div>
