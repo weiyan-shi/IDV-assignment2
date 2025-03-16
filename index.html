@@ -1,77 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Visualization Critique</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            max-width: 800px;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .content {
-            display: none;
-        }
-        .content.active {
-            display: block;
-        }
-        .nav-buttons {
-            margin-top: 20px;
-        }
-        .nav-buttons button {
-            padding: 10px 15px;
-            border: none;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border-radius: 5px;
-            margin: 5px;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+        flex-direction: column;
+      }
+      .container {
+        width: 900px; /* 固定宽度 */
+        max-width: 900px;
+        min-width: 900px;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+      }
+      .content {
+        display: none;
+      }
+      .content.active {
+        display: flex;
+      }
+
+      /* 页面1：垂直排列（图片在上，评论在下） */
+      #page1 {
+        flex-direction: column;
+        text-align: center;
+      }
+      #page1 img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 15px;
+      }
+
+      /* 页面2：水平排列（图片在右，评论在左） */
+      #page2 {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .text {
+        width: 48%;
+        text-align: left;
+      }
+      .image {
+        width: 48%;
+        text-align: right;
+      }
+      .image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+      }
+
+      /* 按钮样式 */
+      .nav-buttons {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .nav-buttons button {
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        margin: 5px;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <div id="page1" class="content active">
-            <h2>Visualization Example 1</h2>
-            <img src="example1.png" alt="Visualization Example 1" style="max-width:100%; height:auto;">
-            <p><strong>Critique:</strong> Here, discuss the data and idiom issues related to this visualization.</p>
-        </div>
-        <div id="page2" class="content">
-            <h2>Visualization Example 2</h2>
-            <img src="example2.jpeg" alt="Visualization Example 2" style="max-width:100%; height:auto;">
-            <p><strong>Critique:</strong> Here, discuss the data and idiom issues related to this visualization.</p>
-        </div>
-        <div class="nav-buttons">
-            <button id="prev" onclick="changePage(-1)">Previous</button>
-            <button id="next" onclick="changePage(1)">Next</button>
-        </div>
+  </head>
+  <body>
+    <div class="nav-buttons">
+      <button id="prev" onclick="changePage(-1)">Previous</button>
+      <button id="next" onclick="changePage(1)">Next</button>
     </div>
+    <div class="container">
+      <!-- 页面1：图片在上，评论在下 -->
+      <div id="page1" class="content active">
+        <img src="example1.png" alt="Visualization Example 1" />
+        <p>
+          <strong>Critique:</strong> Here, discuss the data and idiom issues
+          related to this visualization.
+        </p>
+      </div>
+
+      <!-- 页面2：图片在右，评论在左 -->
+      <div id="page2" class="content">
+        <div class="text">
+          <h2>Visualization Example 2</h2>
+          <p>
+            <strong>Critique:</strong> Here, discuss the data and idiom issues
+            related to this visualization.
+          </p>
+        </div>
+        <div class="image">
+          <img src="example2.jpeg" alt="Visualization Example 2" />
+        </div>
+      </div>
+    </div>
+
     <script>
-        let currentPage = 1;
-        const totalPages = 2;
-        
-        function changePage(step) {
-            document.getElementById(`page${currentPage}`).classList.remove("active");
-            currentPage += step;
-            if (currentPage < 1) currentPage = 1;
-            if (currentPage > totalPages) currentPage = totalPages;
-            document.getElementById(`page${currentPage}`).classList.add("active");
-        }
+      let currentPage = 1
+      const totalPages = 2
+
+      function changePage(step) {
+        document.getElementById(`page${currentPage}`).classList.remove('active')
+        currentPage += step
+        if (currentPage < 1) currentPage = 1
+        if (currentPage > totalPages) currentPage = totalPages
+        document.getElementById(`page${currentPage}`).classList.add('active')
+      }
     </script>
-</body>
+  </body>
 </html>
