@@ -10,31 +10,65 @@
         margin: 0;
         padding: 0;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #f4f4f4;
         flex-direction: column;
+        align-items: center;
+        background-color: #f4f4f4;
+      }
+      .header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: linear-gradient(to right, #2c3e50, #34495e);
+        padding: 20px 0;
+        text-align: center;
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+      .nav-buttons {
+        position: fixed;
+        top: 70px;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        z-index: 999;
+      }
+      .nav-buttons button {
+        padding: 12px 18px;
+        border: none;
+        cursor: pointer;
+        background-color: #3498db;
+        color: white;
+        font-size: 16px;
+        border-radius: 25px;
+        margin: 5px;
+        transition: background 0.3s, transform 0.2s;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+      }
+      .nav-buttons button:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+      }
+      .nav-buttons button:active {
+        transform: scale(0.95);
       }
       .container {
-        width: 900px; /* 固定宽度 */
-        max-width: 900px;
-        min-width: 900px;
+        width: 900px;
         background: white;
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
+        margin-top: 150px;
       }
+
       .content {
         display: none;
       }
       .content.active {
         display: flex;
       }
-
-      /* 页面1：垂直排列（图片在上，评论在下） */
       #page1 {
         flex-direction: column;
         text-align: center;
@@ -45,14 +79,16 @@
         border-radius: 5px;
         margin-bottom: 15px;
       }
-
-      /* 页面2：水平排列（图片在右，评论在左） */
       #page2 {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
       }
-      .text {
+      .text1 {
+        width: 100%;
+        text-align: left;
+      }
+      .text2 {
         width: 48%;
         text-align: left;
       }
@@ -65,46 +101,104 @@
         height: auto;
         border-radius: 5px;
       }
-
-      /* 按钮样式 */
-      .nav-buttons {
-        text-align: center;
-        margin-top: 20px;
-      }
-      .nav-buttons button {
-        padding: 10px 15px;
-        border: none;
-        cursor: pointer;
-        background-color: #007bff;
-        color: white;
-        border-radius: 5px;
-        margin: 5px;
-      }
     </style>
   </head>
   <body>
+    <div class="header">Critique of Visualizations</div>
+
     <div class="nav-buttons">
-      <button id="prev" onclick="changePage(-1)">Previous</button>
-      <button id="next" onclick="changePage(1)">Next</button>
+      <button id="prev" onclick="changePage(-1)">⬅ Back</button>
+      <button id="next" onclick="changePage(1)">Next ➡</button>
     </div>
+
     <div class="container">
-      <!-- 页面1：图片在上，评论在下 -->
       <div id="page1" class="content active">
         <img src="example1.png" alt="Visualization Example 1" />
-        <p>
-          <strong>Critique:</strong> Here, discuss the data and idiom issues
-          related to this visualization.
-        </p>
-      </div>
-
-      <!-- 页面2：图片在右，评论在左 -->
-      <div id="page2" class="content">
-        <div class="text">
-          <h2>Visualization Example 2</h2>
+        <div class="text1">
+          <h2>Visualization 1: "How is gay marriage changing in the US?"</h2>
+          <p><strong>Critique:</strong></p>
+          <p>🔴 <strong>Data Issues</strong></p>
           <p>
-            <strong>Critique:</strong> Here, discuss the data and idiom issues
-            related to this visualization.
+            <strong>Percentage growth can be misleading:</strong> The map shows
+            percent change rather than absolute numbers. A state with very few
+            same-sex marriages in 2014 could show a massive percentage increase
+            even if the actual number of marriages remains low.
           </p>
+
+          <p>🎨 <strong>Idiom Issues</strong></p>
+          <p>
+            <strong>Color scale distortion:</strong> The gradient from green
+            (-11%) to purple (466%) exaggerates differences. The negative value
+            for Iowa is especially highlighted in green, making it visually
+            stand out despite being the only decrease.
+          </p>
+
+          <p>✅ <strong>Suggestions for Improvement</strong></p>
+          <ul>
+            <li>
+              Use absolute numbers alongside percentages to give better context.
+            </li>
+            <li>
+              Adjust color scaling so that large variations (like 466%) do not
+              overly dominate the visualization.
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="page2" class="content">
+        <div class="text2">
+          <h2>
+            Visualization 2: "Top 50 Universities Under 50 Years for PhD
+            Studies"
+          </h2>
+          <p><strong>Critique:</strong></p>
+
+          <p>🔴 <strong>Data Issues</strong></p>
+          <p>
+            <strong>Lack of ranking methodology:</strong> The visualization
+            presents a ranking but doesn't explain how these universities were
+            ranked. What metrics were used? Is it based on faculty quality,
+            research output, or student satisfaction?
+          </p>
+
+          <p>🎨 <strong>Idiom Issues</strong></p>
+          <p>
+            <strong>Unclear purpose of the world map:</strong> It is not clear
+            whether the map aims to show the ranking or simply the
+            geographic distribution of universities. The use of numbers
+            forces viewers to cross-reference with the table, making it harder
+            to interpret.
+          </p>
+
+          <p>
+            <strong>Font size inconsistency:</strong> The title is large and
+            bold, but the university names and rankings are relatively small,
+            making readability difficult.
+          </p>
+
+          <p>
+            <strong>Overuse of blue tones:</strong> The entire design uses a
+            monochromatic blue scheme, which reduces contrast.
+            Differentiating regions with different colours could improve
+            clarity.
+          </p>
+
+          <p>✅ <strong>Suggestions for Improvement</strong></p>
+          <ul>
+            <li>
+              Add ranking methodology to explain how universities were
+              selected.
+            </li>
+            <li>
+              Make the world map more informative by either placing
+              university names directly or using colour coding instead of
+              numbers.
+            </li>
+            <li>
+              Use better colour contrast so that the table and map are
+              easier to read.
+            </li>
+          </ul>
         </div>
         <div class="image">
           <img src="example2.jpeg" alt="Visualization Example 2" />
