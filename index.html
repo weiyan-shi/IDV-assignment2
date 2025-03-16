@@ -19,7 +19,7 @@
         top: 0;
         width: 100%;
         background: linear-gradient(to right, #2c3e50, #34495e);
-        padding: 20px 0;
+        padding: 20px 0 0 0;
         text-align: center;
         font-size: 24px;
         font-weight: bold;
@@ -30,7 +30,7 @@
       .author {
         font-size: 14px;
         color: #f0f0f0;
-        margin-top: 5px;
+        margin-top: 20px;
         text-align: center;
         opacity: 0.8;
       }
@@ -284,6 +284,15 @@
 
           <p>🎨 <strong>Idiom Issues</strong></p>
           <p>
+            <strong>Cluttered Number Placement:</strong>
+            The clustering of multiple numbers in certain regions, particularly
+            in Europe, makes it difficult to distinguish individual
+            institutions. For example, numbers such as "2, 5-6, 8, 19" are
+            grouped together, leading to visual confusion. Additionally, some
+            numbers overlap or are placed too close to each other, as seen in
+            the Asia-Pacific region, further complicating readability.
+          </p>
+          <p>
             <strong>Unclear purpose of the world map:</strong> It is not clear
             whether the map aims to show the ranking or simply the geographic
             distribution of universities. The use of numbers forces viewers to
@@ -304,6 +313,14 @@
 
           <p>✅ <strong>Suggestions for Improvement</strong></p>
           <ul>
+            <li>Group universities by region with color-coding</li>
+            <li>
+              Create a clear visual distinction between rankings (perhaps using
+              size or color intensity)
+            </li>
+            <li>
+              Add a heat map overlay to show concentration of young universities
+            </li>
             <li>
               Add ranking methodology to explain how universities were selected.
             </li>
@@ -329,11 +346,25 @@
 
       function changePage(step) {
         document.getElementById(`page${currentPage}`).classList.remove('active')
+
         currentPage += step
+
         if (currentPage < 1) currentPage = 1
         if (currentPage > totalPages) currentPage = totalPages
+
         document.getElementById(`page${currentPage}`).classList.add('active')
+
+        updateButtons()
       }
+
+      function updateButtons() {
+        document.getElementById('prev').style.display =
+          currentPage === 1 ? 'none' : 'inline-block'
+        document.getElementById('next').style.display =
+          currentPage === totalPages ? 'none' : 'inline-block'
+      }
+
+      updateButtons()
     </script>
   </body>
 </html>
